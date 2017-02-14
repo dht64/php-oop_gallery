@@ -1,0 +1,16 @@
+td img {
+	margin-bottom: 10px;
+	overflow: hidden;
+	height: 150px;
+	width: auto;
+	border: 1px solid #000;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px #bdc3c7;
+	opacity: 0.9;
+	transition: transform 0.5s, opacity 0.5s;
+}
+
+td img:hover {
+	opacity: 1;
+	transform: scale(0.95);
+}

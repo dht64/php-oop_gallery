@@ -241,7 +241,7 @@
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="user.php"><i class="fa fa-user fa-fw"></i> Users</a>
+                    <a href="users.php"><i class="fa fa-user fa-fw"></i> Users</a>
                 </li>
                 <li>
                     <a href="upload.php"><i class="fa fa-cloud fa-fw"></i> Upload</a>

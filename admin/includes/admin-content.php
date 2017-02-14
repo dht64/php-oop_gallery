@@ -36,8 +36,9 @@
     // $photo->title = "Example photo title";
     // $photo->description = "Example photo description";
     // $photo->create();
-echo SITE_ROOT;
-echo INCLUDES_PATH;
+
+    // echo SITE_ROOT;
+    // echo INCLUDES_PATH;
 ?>
 
 <form method="POST" action="index.php" enctype="multipart/form-data">

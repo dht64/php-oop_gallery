@@ -1,1 +1,1 @@
-## Gallery Website built with Pure OOP PHP
+## Gallery website built with pure OOP PHP

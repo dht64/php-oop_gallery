@@ -14,3 +14,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.js"></script>
+
+<!-- TinyMCE -->
+<script src="vendor/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+
+<script src="dist/js/custom.js"></script>
