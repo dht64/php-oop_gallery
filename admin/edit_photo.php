@@ -42,18 +42,18 @@ if (empty($_GET['id'])) {
                         <input type="text" name="title" class="form-control" value="<?= $photo->title ?>">
                     </div>
                     <div class="form-group">
-                        <a class="" href=""><img height="200" src="<?= $photo->picture_path(); ?>"></a>
+                        <a class="picture" href=""><img height="200" src="<?= $photo->picture_path(); ?>"></a>
                     </div>
                     <div class="form-group">
                         <label for="caption">Caption</label>
                         <input type="text" name="caption" class="form-control" value="<?= $photo->caption ?>">
                     </div>
                     <div class="form-group">
-                        <label for="caption">Alternate Text</label>
+                        <label for="alternate_text">Alternate Text</label>
                         <input type="text" name="alternate_text" class="form-control" value="<?= $photo->alternate_text ?>">
                     </div>
                     <div class="form-group">
-                        <label for="caption">Description</label>
+                        <label for="description">Description</label>
                         <textarea name="description" id="" cols="30" rows="10" class="form-control"><?= $photo->description; ?></textarea>
                     </div>
                 </div>

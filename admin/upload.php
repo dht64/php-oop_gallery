@@ -7,11 +7,11 @@ if (isset($_POST['submit'])) {
     $photo = new Photo();
     $photo->title = $_POST['title'];
     $photo->set_file($_FILES['file_upload']);
-
-    if ($photo->save()) {
-        $message = "Photo was uploaded successfully!";
+    $photo->create();
+    if ($photo->upload_photo()) {
+        $message = "<div class='alert alert-success'>User was updated successfully!</div>";
     } else {
-        $message = join("<br>", $photo->errors);
+        $message = "<div class='alert alert-warning'>". join("<br>", $photo->errors). "</div>";
     }
 }
 
@@ -32,9 +32,10 @@ if (isset($_POST['submit'])) {
 
             <!-- Content -->
             <div class="col-md-6">
-                <?php echo $message; ?>
+                <?= $message; ?>
                 <form method="POST" action="upload.php" enctype="multipart/form-data">
                     <div class="form-group">
+                        <label for="title">Title</label>
                         <input type="text" name="title" class="form-control">
                     </div>
                     <div class="form-group">

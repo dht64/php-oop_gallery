@@ -37,7 +37,7 @@ $photos = Photo::find_all();
                             <td>
                                 <img height="150" src="<?= $photo->picture_path(); ?>" alt="">
                                 <div class="pictures_link">
-                                    <a href="delete_photo.php?id=<?= $photo->id ?>" class="btn btn-xs btn-primary">Delete</a>
+                                    <a href="delete_photo.php?id=<?= $photo->id ?>" class="btn btn-xs btn-danger">Delete</a>
                                     <a href="edit_photo.php?id=<?= $photo->id ?>" class="btn btn-xs btn-info">Edit</a>
                                     <a href="#" class="btn btn-xs btn-success">View</a>
                                 </div>
