@@ -12,6 +12,10 @@
 <script src="vendor/morrisjs/morris.min.js"></script>
 <script src="data/morris-data.js"></script>
 
+<!-- Google Charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.js"></script>
 

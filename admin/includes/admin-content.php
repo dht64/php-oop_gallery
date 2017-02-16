@@ -1,54 +1,7 @@
 <?php 
 
-    // $users = User::find_all();
-    // foreach ($users as $user) {
-    //     echo $user->username;
-    // }
-
-    // $found_user = User::find_user_by_id(2);
-
-    // echo $found_user->username;
-
-    // $user = new User();
-    // $user->username = "Example_username2";
-    // $user->password = "Example_password2";
-    // $user->first_name = "Example_firstname2";
-    // $user->last_name = "Example_lastname2";
-    // $user->create();
-
-    // $user = User::find_by_id(10);
-    // $user->last_name = "HELLO3";
-    // $user->save();
-
-    // $user = User::find_user_by_id(11);
-    // $user->delete();
-
-    // $user = new User();
-    // $user->username = "whatever";
-    // $user->save();
-
-    // $photos = Photo::find_all();
-    // foreach ($photos as $photo) {
-    //     echo "<div class='alert alert-success'>". $photo->title ."</div";
-    // }
-
-    // $photo = new Photo();
-    // $photo->title = "Example photo title";
-    // $photo->description = "Example photo description";
-    // $photo->create();
-
-    // echo SITE_ROOT;
-    // echo INCLUDES_PATH;
 ?>
 
-<form method="POST" action="index.php" enctype="multipart/form-data">
-
-    <input type="file" name="file_upload">
-
-    <input type="submit" value="Submit" name="submit">
-</form>
-
-<!-- /.row -->
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
@@ -58,7 +11,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge"><?= Comment::count_all(); ?></div>
                         <div>New Comments!</div>
                     </div>
                 </div>
@@ -77,11 +30,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-tasks fa-5x"></i>
+                        <i class="fa fa-photo fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
-                        <div>New Tasks!</div>
+                        <div class="huge"><?= Photo::count_all(); ?></div>
+                        <div>Photos</div>
                     </div>
                 </div>
             </div>
@@ -99,11 +52,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-shopping-cart fa-5x"></i>
+                        <i class="fa fa-users fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
-                        <div>New Orders!</div>
+                        <div class="huge"><?= User::count_all(); ?></div>
+                        <div>Users</div>
                     </div>
                 </div>
             </div>
@@ -121,11 +74,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-support fa-5x"></i>
+                        <i class="fa fa-eye fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
-                        <div>Support Tickets!</div>
+                        <div class="huge"><?= $session->count; ?></div>
+                        <div>New Views</div>
                     </div>
                 </div>
             </div>
@@ -138,7 +91,41 @@
             </a>
         </div>
     </div>
-</div>
+</div> <!-- /.row -->
+
+<!-- Google Chart -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li><a href="#">Action</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id="chart_div"></div>
+            </div> <!-- /.panel-body -->
+        </div> <!-- /.panel -->
+    </div> <!-- /.col-lg-8 -->
+</div> <!-- /.row -->
+
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-8">

@@ -1,3 +1,33 @@
+<?php
+
+require_once("admin/includes/init.php");
+
+if (empty($_GET['id'])) {
+    redirect("index.php");
+}
+
+$photo = Photo::find_by_id($_GET['id']);
+
+if (isset($_POST['submit'])) {
+    $author = trim($_POST['author']);
+    $body = trim($_POST['body']);
+
+    $new_comment = empty($author) ? Comment::create_comment($photo->id, $body) : Comment::create_comment($photo->id, $author, $body);
+
+    if ($new_comment && $new_comment->save()) {
+        redirect("photo.php?id={$photo->id}");
+    } else {
+        $message = "There was some problems saving.";
+    }
+} else {
+    $author = "";
+    $body = "";
+}
+
+$comments = Comment::find_the_comments($photo->id);
+
+?>
+
 <?php include 'includes/header.php'; ?>
 
 <body>
@@ -13,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Gallery</a>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -25,7 +55,7 @@
                         <a href="#">Services</a>
                     </li>
                     <li>
-                        <a href="admin">Admin</a>
+                        <a href="#">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -39,41 +69,73 @@
 
         <div class="row">
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
 
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
+                <!-- Blog Post -->
 
-                <!-- First Blog Post -->
-                <h2>
-                    <a href="#">Blog Post Title</a>
-                </h2>
+                <!-- Title -->
+                <h1>Blog Post Title</h1>
+
+                <!-- Author -->
                 <p class="lead">
-                    by <a href="index.php">Gallery</a>
+                    by <a href="#">Start Bootstrap</a>
                 </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on January 28, 2017 at 10:00 PM</p>
+
                 <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+
+                <hr>
+
+                <!-- Preview Image -->
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 
+                <!-- Post Content -->
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+
                 <hr>
 
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+                <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form role="form" method="post">
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" name="author" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="body" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- Posted Comments -->
+
+                <!-- Comment -->
+                <?php foreach ($comments as $comment): {
+                } ?>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><?= $comment->author; ?>
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4>
+                        <?= $comment->body ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
 
             </div>
 
@@ -110,7 +172,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- /.col-lg-6 -->
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
                                 <li><a href="#">Category Name</a>
@@ -123,7 +184,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -147,7 +207,6 @@
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website <?= date("Y"); ?></p>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </footer>

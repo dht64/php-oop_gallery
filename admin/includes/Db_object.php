@@ -170,6 +170,17 @@ class Db_object
 		return (mysqli_affected_rows($database->connection) == 1) ? true : false;
 	}
 
+	public static function count_all()
+	{
+		global $database;
+
+		$sql = "SELECT COUNT(*) FROM ". static::$db_table;
+		$result_set = $database->query($sql);
+		$row = mysqli_fetch_assoc($result_set);
+
+		return array_shift($row);
+	}
+
 	public function set_file($file)
 	{
 		if (empty($file) || !$file || !is_array($file)) {
