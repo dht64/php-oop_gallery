@@ -11,3 +11,8 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.pager li.active a {
+	background: #bdc3c7;
+	color: #2c3e50;
+}

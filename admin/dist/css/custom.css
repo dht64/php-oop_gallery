@@ -14,3 +14,40 @@ td img:hover {
 	opacity: 1;
 	transform: scale(0.95);
 }
+
+.modal-body .thumbnails {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.modal-body .thumbnails .thumbnail-photo {
+	flex: 1;
+	/* flex-basis: 20%; */
+}
+
+/*
+#modal_sidebar {
+	position: fixed !important;
+}
+
+#set_user_image {
+	margin: 10px;
+}
+
+.modal_thumbnails {
+	width: 150px;
+	height: 100px !important;
+}
+
+.modal-body {
+	overflow: auto;
+	height: 500px !important;
+	min-height: 300px !important;  
+}
+
+.modal-dialog {
+	width: 90% !important;
+}
+*/

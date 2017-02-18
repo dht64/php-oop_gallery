@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/photo_library_modal.php"); ?>
 
 <?php 
 
@@ -8,6 +9,8 @@ if (empty($_GET['id'])) {
     redirect("users.php");
 } else {
     $user = User::find_by_id($_GET['id']);
+
+    $user_id = $user->id;
 
     if (isset($_POST['update'])) {
         if ($user) {
@@ -46,7 +49,7 @@ if (empty($_GET['id'])) {
             <!-- Content -->
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="<?= $user->user_image_path(); ?>">
+                    <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?= $user->user_image_path(); ?>"></a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -75,7 +78,7 @@ if (empty($_GET['id'])) {
                         <input type="password" name="password" class="form-control" value="<?= $user->password; ?>">
                     </div>
                     <div class="form-group">
-                        <a href="delete_user.php?id=<?= $user->id ?>" class="btn btn-danger">Delete</a>
+                        <a href="delete_user.php?id=<?= $user->id ?>" class="btn btn-danger user-id">Delete</a>
                         <input type="submit" name="update" value="Update" class="btn btn-primary pull-right">
                     </div>
                 </form>

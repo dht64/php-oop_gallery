@@ -1,34 +1,30 @@
-/** Load Google Charts */
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
+$(document).ready(function(){
+	
+	var user_href, user_href_splitted, user_id;
+	var image_src, image_href_splitted, image_name;
 
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+	$(".photo-sm").click(function(){
+		$("#set_user_image").prop("disabled", false);
 
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
-function drawChart() {
+		user_href = $(".user-id").prop("href");
+		user_href_splitted = user_href.split("=");
+		user_id = user_href_splitted[user_href_splitted.length - 1];
+		
+		image_src = $(this).prop("src");
+		image_href_splitted = image_src.split("/");
+		image_name = image_href_splitted[image_href_splitted.length - 1];
 
-// Create the data table.
-var data = new google.visualization.DataTable();
-data.addColumn('string', 'Topping');
-data.addColumn('number', 'Slices');
-data.addRows([
-    ['Mushrooms', 3],
-    ['Onions', 1],
-    ['Olives', 1],
-    ['Zucchini', 1],
-    ['Pepperoni', 2]
-]);
+	});
 
-// Set chart options
-var options = {
-    'title': 'How Much Pizza I Ate Last Night',
-    'width': 800,
-    'height': 600};
+	$("#set_user_image").click(function(){
+		$.ajax({
+			url: "ajax_code.php",
+			data: {image_name: image_name, user_id: user_id},
+			type: "POST",
+			success: function(data){
+				alert("It worked!");
+			}
+		});
+	});
 
-// Instantiate and draw our chart, passing in some options.
-var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-chart.draw(data, options);
-}
+});
