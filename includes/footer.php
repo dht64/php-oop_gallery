@@ -1,6 +1,6 @@
 <footer>
     <div class="row">
-        <p class="text-center">Copyright &copy; Your Website <?= date("Y"); ?></p>
+        <p class="text-center">Copyright &copy; Tung Gallery <?= date("Y"); ?></p>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
