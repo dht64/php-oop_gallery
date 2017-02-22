@@ -32,6 +32,28 @@ class User extends Db_object {
 		return !(empty($the_result_array)) ? array_shift($the_result_array) : false;
 	}
 
+	public function ajax_save_user_image($user_image, $user_id)
+	{
+		global $database;
+
+		$this->user_image = $database->escape_string($user_image);
+		$this->id = $database->escape_string($user_id);
+
+		$this->save();
+		echo $this->user_image_path();
+	}
+
+	public function delete_user() 
+	{
+		if ($this->delete()) {
+			$target_path = SITE_ROOT .'/admin/uploads/'. $this->user_image;
+
+			return unlink($target_path) ? true : false;
+		} else {
+			return false;
+		}
+	}
+
 } // End of User class
 
 ?>

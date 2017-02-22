@@ -23,6 +23,9 @@
 <script src="vendor/tinymce/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
 
+<!-- Dropzone -->
+<script src="dist/js/dropzone.min.js"></script>
+
 <script src="dist/js/custom.js"></script>
 
 <!-- Google Chart Initialize -->

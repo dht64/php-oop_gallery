@@ -1,4 +1,5 @@
 <?php 
+    ob_start();
     require_once("init.php");
 
     if (!$session->is_signed_in()) {
@@ -33,6 +34,9 @@
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Dropzone CSS -->
+    <link href="dist/css/dropzone.min.css" rel="stylesheet">
 
     <!-- My Custom CSS -->
     <link href="dist/css/custom.css" rel="stylesheet">

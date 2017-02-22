@@ -24,7 +24,17 @@ td img:hover {
 
 .modal-body .thumbnails .thumbnail-photo {
 	flex: 1;
-	/* flex-basis: 20%; */
+	/*flex-basis: 20%;*/
+}
+
+.dropzone {
+	border: 3px dashed #0087f7;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.info-box-header {
+	cursor: pointer;
 }
 
 /*

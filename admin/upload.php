@@ -3,10 +3,10 @@
 <?php 
 
 $message = "";
-if (isset($_POST['submit'])) {
+if (isset($_FILES['file'])) {
     $photo = new Photo();
     $photo->title = $_POST['title'];
-    $photo->set_file($_FILES['file_upload']);
+    $photo->set_file($_FILES['file']);
     $photo->create();
     if ($photo->upload_photo()) {
         $message = "<div class='alert alert-success'>User was updated successfully!</div>";
@@ -31,19 +31,30 @@ if (isset($_POST['submit'])) {
             </div>
 
             <!-- Content -->
-            <div class="col-md-6">
-                <?= $message; ?>
-                <form method="POST" action="upload.php" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="file" name="file_upload">
-                    </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $message; ?>
+                    <form method="POST" action="upload.php" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="file">
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div> <!-- /.row -->
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="upload.php" class="dropzone">
+                        
+                    </form>
+                </div>
             </div>
+            
         </div>
         <!-- /#page-wrapper -->
 

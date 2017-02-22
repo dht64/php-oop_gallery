@@ -75,21 +75,30 @@ $photos = Photo::find_by_query($sql);
                 <ul class="pagination">
                     <?php 
                     if ($paginate->page_total() > 1) {
-                        if ($paginate->has_next()) {
-                            echo "<li class='next'><a href='index.php?page={$paginate->next()}'>Newer &rarr;</a></li>";
+                        if ($paginate->has_previous()) {
+                            echo "<li class='next'><a href='index.php?page={$paginate->previous()}'>&larr; Previous</a></li>";
                         }
 
                         // Number the pages
-                        for ($i=1; $i <= $paginate->page_total() ; $i++) {
-                            if ($i == $paginate->current_page) {
+                        $count_page = 0;
+                        for ($i=1; $i <= $paginate->page_total(); $i++) {
+                            if ($count_page == 10) {
+                                break;
+                            } elseif ($i > 10 && $i > ($paginate->current_page + 5)) {
+                                continue;
+                            } elseif ($i <= ($paginate->current_page - 5) && (($paginate->current_page - $i) + ($paginate->page_total() - $paginate->current_page)) >= 10 ) {
+                                continue;
+                            } elseif ($i == $paginate->current_page) {
                                 echo "<li class='active'><a>{$i}</a></li>";
+                                $count_page++;
                             } else {
                                 echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                                $count_page++;
                             }
                         }
 
-                        if ($paginate->has_previous()) {
-                            echo "<li class='previous'><a href='index.php?page={$paginate->previous()}'>&larr; Older</a></li>";
+                        if ($paginate->has_next()) {
+                            echo "<li class='previous'><a href='index.php?page={$paginate->next()}'>Next &rarr;</a></li>";
                         }
                     }
                     ?>

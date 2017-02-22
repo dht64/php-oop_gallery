@@ -1,9 +1,9 @@
-<?php include("includes/header.php"); ?>
-<?php include("includes/photo_library_modal.php"); ?>
+<?php include_once("includes/header.php"); ?>
+<?php include_once("includes/photo_library_modal.php"); ?>
 
 <?php 
 
-$message = "";
+$message_edit = "";
 /** Form submitted */
 if (empty($_GET['id'])) {
     redirect("users.php");
@@ -20,13 +20,17 @@ if (empty($_GET['id'])) {
             $user->password = $_POST['password'];
             if ($user->set_file($_FILES['user_image'])) {
                 $user->user_image = $user->filename;
+                if ($user->upload_photo()) {
+                    $message_edit = "<div class='alert alert-success'>User was updated successfully!</div>";
+                    // continue;
+                } else {
+                    $message_edit = "<div class='alert alert-warning'>". join("<br>", $user->errors). "</div>";
+                }
             }
             $user->save();
-            if ($user->upload_photo()) {
-                $message = "<div class='alert alert-success'>User was updated successfully!</div>";
-            } else {
-                $message = "<div class='alert alert-warning'>". join("<br>", $user->errors). "</div>";
-            }
+            $message_edit = "<div class='alert alert-success'>User was updated successfully!</div>";
+            // $session->message("The user has been updated!");
+            //redirect("users.php");
         }
     }
 }
@@ -41,19 +45,22 @@ if (empty($_GET['id'])) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add User</h1>
+                    <h1 class="page-header">Edit User</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
         
             <!-- Content -->
             <div class="col-md-3">
-                <div class="thumbnail">
+                <div class="thumbnail user_image_box">
                     <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?= $user->user_image_path(); ?>"></a>
                 </div>
             </div>
             <div class="col-md-9">
-                <?= $message; ?>
+                <p class="bg-success">
+                    <?= $message_edit; ?>
+                </p>
+
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="file" name="user_image">

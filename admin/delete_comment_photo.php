@@ -9,6 +9,7 @@ if (empty($_GET['id'])) {
 
 	if ($comment) {
 		$comment->delete();
+		$session->message("The comment has been deleted!");
 		redirect("comment_photo.php?id={$comment->photo_id}");
 	} else {
 		redirect("comment_photo.php?id={$comment->photo_id}");
